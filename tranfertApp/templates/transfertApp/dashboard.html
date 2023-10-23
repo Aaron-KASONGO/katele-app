@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container vh-100">
+    <h1 class="text-center my-5">Bienvenue sur le portail <span class="text-primary">E-Tranfert</span></h1>
+    <div class="row">
+        <h6 class="text-muted my-4">Activités principales</h6>
+        <div class="col-md-4 col-sm-6">
+            <a class="card shadow" href="{% url "validated-student" %}">
+                <div class="card-body mx-4">
+                    <div class="d-flex justify-content-between align-items-baseline mb-5">
+                        <div class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
+                                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                              </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold">{{ etudes | length }}</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Étudiants</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow">
+                <div class="card-body mx-4">
+                    <div class="d-flex justify-content-between align-items-baseline mb-5">
+                        <div class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                              </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold">{{ palmares | length }}</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Trouver palmares</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <a class="card shadow" href="{% url "invalidated-student" %}">
+                <div class="card-body mx-4">
+                    <div class="d-flex justify-content-between align-items-baseline mb-5">
+                        <div class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                              </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold">{{ etudes_invalid | length }}</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Non Validé</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h6 class="text-muted my-4">Validations récentes</h6>
+
+        {% for etude in etudes %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card shadow py-3">
+                    <div class="card-body mx-4">
+                        <div class="d-flex justify-content-center align-items-baseline mb-5">
+                            <div class="bg-primary p-1 rounded-circle">
+                                <img class="img-fluid rounded-circle border border-3 border-white" style="width: 100px;height: 100px;object-fit: cover;" src="https://imgs.search.brave.com/yvRBUhRHqnvduiPqz0JOch9bKzpikLre4ZcLLnqrH5Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudGhlbm91bnBy/b2plY3QuY29tL3Bu/Zy83NzA3OTctMjAw/LnBuZw" alt="avatar">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h4>{{ etude.etudiant.nom_etudiant }} {{ etude.etudiant.prenom }}</h4>
+                            <h6 class="text-muted">{{ etude.promotion }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div>
+                <h3 class="text-center">Aucun étudiant récent !</h3>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

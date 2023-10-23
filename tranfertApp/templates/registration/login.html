@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-6 p-0 d-none d-md-block">
+            <img class="img-fluid w-100 vh-100" style="object-fit: cover;" src="https://images.pexels.com/photos/3186386/pexels-photo-3186386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="image">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <form method='post'>
+                {% csrf_token %}
+                <h1 class="text-center mb-5">Se connecter en tant qu'<span class="text-primary">Université</span></h1>
+                <div class='text-danger'>{{ form.errors }}</div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" name='username' class="form-control" id="id_username" placeholder="Subject">
+                            <label for="id_username">Email de l'université</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="password" name='password' class="form-control" id="is_password" placeholder="Subject">
+                            <label for="id_password">Mot de passe</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 py-3" type="submit">Se connecter</button>
+                    </div>
+                </div>
+            </form>
+            <div hidden>
+                {{ form.errors }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

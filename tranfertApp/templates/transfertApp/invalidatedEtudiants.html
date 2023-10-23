@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="row g-3">
+        <h2 class="text-muted my-4">Validations en cours</h2>
+        {% for etude in etudes_invalid %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card shadow py-3">
+                    <div class="card-body mx-4">
+                        <div class="d-flex justify-content-center align-items-baseline mb-5">
+                            <div class="bg-primary p-1 rounded-circle">
+                                <img class="img-fluid rounded-circle border border-3 border-white" style="width: 100px;height: 100px;object-fit: cover;" src="https://imgs.search.brave.com/yvRBUhRHqnvduiPqz0JOch9bKzpikLre4ZcLLnqrH5Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudGhlbm91bnBy/b2plY3QuY29tL3Bu/Zy83NzA3OTctMjAw/LnBuZw" alt="avatar">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h4>{{ etude.etudiant.nom_etudiant }} {{ etude.etudiant.prenom }}</h4>
+                            <h6 class="text-muted">{{ etude.promotion }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div>
+                <h3 class="text-center">Aucun étudiant récent !</h3>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}
