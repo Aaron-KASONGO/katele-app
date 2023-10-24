@@ -7,7 +7,7 @@
         <h2 class="text-muted my-4">Validations en cours</h2>
         {% for etude in etudes_invalid %}
             <div class="col-md-4 col-sm-6">
-                <div class="card shadow py-3">
+                <a class="card shadow py-3" href="{% url "profile-invalid" etude.etudiant.id %}">
                     <div class="card-body mx-4">
                         <div class="d-flex justify-content-center align-items-baseline mb-5">
                             <div class="bg-primary p-1 rounded-circle">
@@ -19,7 +19,7 @@
                             <h6 class="text-muted">{{ etude.promotion }}</h6>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% empty %}
             <div>
@@ -29,5 +29,4 @@
 
     </div>
 </div>
-{% include "transfertApp/profile_include.html" %}
 {% endblock content %}

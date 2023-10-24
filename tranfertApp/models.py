@@ -22,6 +22,9 @@ class Universite(User):
     def __str__(self):
         return self.nom_universite
     
+    class Meta:
+        verbose_name = "Université"
+    
 
 class Palmares(models.Model):
     date_creation = models.DateTimeField(auto_now_add=True)
@@ -42,7 +45,8 @@ class Inscription(models.Model):
 
 class Parcous(models.Model):
     anne_acad = models.IntegerField()
-    cote = models.IntegerField()
-    mention = models.CharField(max_length=15)
+    cote = models.IntegerField(default=0)
+    mention = models.CharField(max_length=15, default="Pas de mention")
+    promotion = models.CharField(max_length=30, default="L4 MSI")
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
 

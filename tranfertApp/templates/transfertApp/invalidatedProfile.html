@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "transfertApp/profile_include.html" %}
+    <div class="offset-3 col-6">
+        <a class="btn btn-primary" href="{% url "validate-etudiant" profile.id %}">Valider</a>
+    </div>
+{% endblock content %}

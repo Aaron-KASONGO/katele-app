@@ -9,5 +9,7 @@ urlpatterns = [
     path('student-validated', views.validated_etudiants, name='validated-student'),
     path('student-invalidated', views.invalidated_etudiants, name='invalidated-student'),
     path('add-palmares', views.add_palmares, name="add-palmares"),
-    path('add-etudiant', views.add_etudiant, name="add-etudiant")
+    path('add-etudiant', views.add_etudiant, name="add-etudiant"),
+    path('invalid-profile/<int:id>', views.profile_invalid, name="profile-invalid"),
+    path('validate-etudiant/<int:id>', views.valider_etudiant, name="validate-etudiant")
 ]

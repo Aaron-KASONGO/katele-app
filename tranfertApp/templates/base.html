@@ -55,10 +55,15 @@
                 </div> -->
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            {% if user %}
+            {% if user.username %}
             <div class="py-4 px-4 d-flex align-items-center">
-                <div class="bg-primary rounded-circle p-1 mx-2">
-                    <img class="img-fluid rounded-circle border border-3 border-white" style="width: 50px;height: 50px;" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar">
+                <div class="dropdown">
+                    <div class="bg-primary rounded-circle p-1 mx-2" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-fluid rounded-circle border border-3 border-white" style="width: 50px;height: 50px;" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar">
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{% url "logout" %}">Se déconnecter</a></li>
+                    </ul>
                 </div>
                 <div class="mx-2">
                     <button type="button" class="btn text-primary px-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -78,7 +83,7 @@
                 </div>
             </div>
             {% else %}
-                <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Créer un compte<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Se connecter<i class="fa fa-arrow-right ms-3"></i></a>
             {% endif %}
         </div>
     </nav>
