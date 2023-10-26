@@ -29,6 +29,8 @@ class Universite(User):
 class Palmares(models.Model):
     date_creation = models.DateTimeField(auto_now_add=True)
     annee = models.IntegerField()
+    file_first_sem = models.FileField(upload_to="palmares1", null=True)
+    file_second_sem = models.FileField(upload_to="palmares2", null=True)
     universite = models.ForeignKey('Universite', on_delete=models.CASCADE)
 
 class Etude(models.Model):
@@ -45,6 +47,7 @@ class Inscription(models.Model):
 
 class Parcous(models.Model):
     anne_acad = models.IntegerField()
+    file = models.FileField(upload_to="parcours", null=True)
     cote = models.IntegerField(default=0)
     mention = models.CharField(max_length=15, default="Pas de mention")
     promotion = models.CharField(max_length=30, default="L4 MSI")

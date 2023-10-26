@@ -7,8 +7,30 @@ from .models import Etudiant, Palmares, Universite, Etude, Parcous
 from .forms import PalmaresForm, EtudiantForm
 
 # Create your views here.
-@login_required(login_url='login')
 def home(request):
+    universites = Universite.objects.all()
+    return render(request, 'transfertApp/home.html', {'universites': universites})
+
+def demande_inscription(request):
+    if request.method == 'POST':
+        form = request.POST
+        print(form)
+        etude = Etude.objects.filter(palmares_id=form['source'])
+        etudiant = Etudiant.objects.filter(login=form['login'], password=form['password'], etude__in=etude)
+        if (etudiant):
+            etude_dest = Etude.objects.create(palmares=Palmares.objects.get(pk=form['destination']), etudiant=etudiant[0], promotion=form['promotion'])
+            return redirect('demander-inscription')
+        else:
+            palmares = Palmares.objects.all()
+            return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares, 'no_passed': True})
+        
+    else:
+        palmares = Palmares.objects.all()
+        return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares})
+
+
+@login_required(login_url='login')
+def dashboard(request):
     palmares = Palmares.objects.filter(universite=request.user)
     etudes = Etude.objects.filter(palmares__in=palmares, valide=True)
     etudes_invalid = Etude.objects.filter(palmares__in=palmares, valide=False)

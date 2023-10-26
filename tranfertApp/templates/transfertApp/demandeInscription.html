@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-6 offset-md-3 d-flex align-items-center">
+            <form method="post" action="{% url "demander-inscription" %}">
+                {% csrf_token %}
+                <h1 class="text-center mb-5">Demander une inscription à une <span class="text-primary">Université</span></h1>
+                {% if no_passed %}<h6 class="text-danger text-center">Aucun étudiant correspondant</h6>{% endif %}
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" name="login" class="form-control" id="subject" placeholder="Subject">
+                            <label for="subject">Login Étudiant</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Subject">
+                            <label for="subject">Mot de passe</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" name="promotion" class="form-control" id="promotion" placeholder="Subject">
+                            <label for="subject">Promotion</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <label for="source" class="form-label">Université Source</label>
+                            <select name="source" id="source" class="form-select">
+                                <option selected>Choisir Université source</option>
+                                {% for palm in palmares %}
+                                    <option value="{{ palm.id }}">{{ palm.annee }} => {{ palm.universite.nom_universite }}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <label for="destination" class="form-label">Université destination</label>
+                            <select name="destination" id="destination" class="form-select">
+                                <option selected>Choisir Université destination</option>
+                                {% for palm in palmares %}
+                                    <option value="{{ palm.id }}">{{ palm.annee }} => {{ palm.universite.nom_universite }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 py-3" type="submit">Demander</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

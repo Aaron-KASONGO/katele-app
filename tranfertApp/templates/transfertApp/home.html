@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0 mb-5">
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static "img/carousel-1.jpg" %}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Transfert d'étudiant</h5>
+                            <h1 class="display-3 text-white animated slideInDown">Plateforme de tranfert d'étudiant</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">Le transfert d'étudiants est une option intéressante qui permet aux étudiants de poursuivre leurs études dans un environnement qui leur convient mieux.</p>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Créer un compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static "img/carousel-2.jpg" %}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Compatibilité des cours</h5>
+                            <h1 class="display-3 text-white animated slideInDown">Nous nous basons sur la compatibilité des cours</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">Lorsque vous envisagez de transférer d'une université à une autre, il est important de vous renseigner sur la compatibilité des cours entre les deux établissements.</p>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Créer un compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
+                        <h5 class="mb-3">Réorienter son cursus</h5>
+                        <p>Un étudant peut changer d'université sans perdre de temps, ni de l'argent</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                        <h5 class="mb-3">S'améliorer</h5>
+                        <p>Trouver une université qui propose une formation plus approfondie</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-home text-primary mb-4"></i>
+                        <h5 class="mb-3">Découverte</h5>
+                        <p>Un étudiant peut s'inscrire dans une université située dans une autre ville ou région</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item text-center pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
+                        <h5 class="mb-3">Réduire les coûts </h5>
+                        <p>Le transfert d'étudiant peut permettre de réduire les coûts des études</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+<div class="container vh-100">
+    <h4 class="text-center my-4">Palmares des <span class="text-primary">universités</span></h4>
+    <div class="row h-100">
+        <div>
+            <div class="accordion" id="accordionExample">
+                
+                {% for univ in universites %}
+                    <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne{{ univ.id }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ univ.id }}" aria-expanded="true" aria-controls="collapseOne{{ univ.id }}">
+                            {{ univ.nom_universite }}
+                        </button>
+                    </h2>
+                    <div id="collapseOne{{ univ.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne{{ univ.id }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="accordion" id="accordion">
+                                {% for palmares in univ.palmares_set.all %}
+                                    <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne{{ palmares.id }}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ palmares.id }}" aria-expanded="true" aria-controls="collapseOne{{ palmares.id }}">
+                                            {{ palmares.annee }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne{{ palmares.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne{{ palmares.id }}" data-bs-parent="#accordion">
+                                        <div class="accordion-body">
+                                        <ol class="">
+                                            <li><a download href="{{ palmares.file_first_sem.url }}">Premier semestre</a></li>
+                                            <li><a download href="{{ palmares.file_second_sem.url }}">Deuxième semestre</a></li>
+                                        </ol>
+                                        </div>
+                                    </div>
+                                    </div>
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
