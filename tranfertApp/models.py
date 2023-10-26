@@ -39,6 +39,7 @@ class Etude(models.Model):
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
     valide = models.BooleanField(default=False)
 
+
 class Inscription(models.Model):
     date_inscription = models.DateTimeField()
     faculte = models.CharField(max_length=30)
