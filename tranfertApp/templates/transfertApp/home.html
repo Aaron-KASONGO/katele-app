@@ -13,7 +13,12 @@
                             <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Transfert d'étudiant</h5>
                             <h1 class="display-3 text-white animated slideInDown">Plateforme de tranfert d'étudiant</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Le transfert d'étudiants est une option intéressante qui permet aux étudiants de poursuivre leurs études dans un environnement qui leur convient mieux.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            {% if user.username %}
+                                <a href="{% url "logout" %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se déconnecter</a>
+                            {% else %}
+                                <a href="{% url "login" %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            {% endif %}
+                                <a href="{% url "demander-inscription" %}" class="btn bg-white py-md-3 px-md-5 me-3 animated slideInLeft">Demander inscription</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +33,12 @@
                             <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Compatibilité des cours</h5>
                             <h1 class="display-3 text-white animated slideInDown">Nous nous basons sur la compatibilité des cours</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Lorsque vous envisagez de transférer d'une université à une autre, il est important de vous renseigner sur la compatibilité des cours entre les deux établissements.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            {% if user.username %}
+                                <a href="{% url "logout" %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se déconnecter</a>
+                            {% else %}
+                                <a href="{% url "login" %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Se connecter</a>
+                            {% endif %}
+                                <a href="{% url "demander-inscription" %}" class="btn bg-white py-md-3 px-md-5 me-3 animated slideInLeft">Demander inscription</a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +133,6 @@
                     </div>
                     </div>
                 {% endfor %}
-                
             </div>
         </div>
     </div>

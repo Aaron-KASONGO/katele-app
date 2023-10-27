@@ -5,7 +5,7 @@ from .models import Palmares, Etudiant
 class PalmaresForm(ModelForm):
     class Meta:
         model = Palmares
-        fields = ('annee',)
+        fields = ('annee','file_first_sem', 'file_second_sem')
 
 class EtudiantForm(ModelForm):
     palmares = forms.IntegerField()

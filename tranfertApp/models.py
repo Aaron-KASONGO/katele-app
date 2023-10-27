@@ -7,13 +7,14 @@ class Etudiant(models.Model):
     nom_etudiant = models.CharField(max_length=30)
     post_nom = models.CharField(max_length=30)
     prenom = models.CharField(max_length=30)
-    date_naissance = models.IntegerField()
+    date_naissance = models.DateTimeField()
     matricule = models.CharField(max_length=20)
     login = models.CharField(max_length=30)
     password = models.TextField()
 
 
 class Universite(User):
+    avatar = models.ImageField(upload_to="avatar_universites", default="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg")
     nom_universite = models.CharField(max_length=30)
     adresse = models.TextField()
     contact = models.CharField(max_length=30)

@@ -11,6 +11,10 @@ def home(request):
     universites = Universite.objects.all()
     return render(request, 'transfertApp/home.html', {'universites': universites})
 
+def voir_palmares(request):
+    universites = Universite.objects.all()
+    return render(request, 'transfertApp/trouverPalmares.html', {'universites': universites})
+
 def demande_inscription(request):
     if request.method == 'POST':
         form = request.POST
@@ -51,7 +55,7 @@ def invalidated_etudiants(request):
 @login_required(login_url='login')
 def add_palmares(request):
     if request.method == 'POST':
-        form = PalmaresForm(request.POST)
+        form = PalmaresForm(request.POST, request.FILES)
         if form.is_valid():
             palmares = form.save(commit=False)
             palmares.universite = Universite.objects.get(pk=request.user.id)
