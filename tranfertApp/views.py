@@ -15,7 +15,7 @@ def voir_palmares(request):
     universites = Universite.objects.all()
     return render(request, 'transfertApp/trouverPalmares.html', {'universites': universites})
 
-def demande_inscription(request):
+def demande_inscription(request, id_palmares=None):
     if request.method == 'POST':
         form = request.POST
         print(form)
@@ -25,12 +25,14 @@ def demande_inscription(request):
             etude_dest = Etude.objects.create(palmares=Palmares.objects.get(pk=form['destination']), etudiant=etudiant[0], promotion=form['promotion'])
             return redirect('demander-inscription')
         else:
-            palmares = Palmares.objects.all()
-            return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares, 'no_passed': True})
+            palmares = Palmares.objects.exclude(pk=id_palmares)
+            single_palm = Palmares.objects.get(pk=id_palmares)
+            return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares, 'no_passed': True, 'single_palm': single_palm})
         
     else:
-        palmares = Palmares.objects.all()
-        return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares})
+        palmares = Palmares.objects.exclude(pk=id_palmares)
+        single_palm = Palmares.objects.get(pk=id_palmares)
+        return render(request, 'transfertApp/demandeInscription.html', {'palmares': palmares, 'single_palm': single_palm})
 
 
 @login_required(login_url='login')

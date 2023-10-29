@@ -13,6 +13,6 @@ urlpatterns = [
     path('add-etudiant', views.add_etudiant, name="add-etudiant"),
     path('invalid-profile/<int:id>', views.profile_invalid, name="profile-invalid"),
     path('validate-etudiant/<int:id>', views.valider_etudiant, name="validate-etudiant"),
-    path('demander-inscription', views.demande_inscription, name='demander-inscription'),
+    path('demander-inscription/<int:id_palmares>', views.demande_inscription, name='demander-inscription'),
     path('voir-palmares', views.voir_palmares, name="voir-palmares")
 ]

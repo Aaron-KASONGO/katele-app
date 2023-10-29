@@ -4,7 +4,7 @@
 <div class="container-fluid vh-100">
     <div class="row h-100">
         <div class="col-md-6 offset-md-3 d-flex align-items-center">
-            <form method="post" action="{% url "demander-inscription" %}">
+            <form method="post" action="{% url "demander-inscription" single_palm.id %}">
                 {% csrf_token %}
                 <h1 class="text-center mb-5">Demander une inscription à une <span class="text-primary">Université</span></h1>
                 {% if no_passed %}<h6 class="text-danger text-center">Aucun étudiant correspondant</h6>{% endif %}
@@ -34,10 +34,8 @@
                         <div class="form-floating">
                             <label for="source" class="form-label">Université Source</label>
                             <select name="source" id="source" class="form-select">
-                                <option selected>Choisir Université source</option>
-                                {% for palm in palmares %}
-                                    <option value="{{ palm.id }}">{{ palm.annee }} => {{ palm.universite.nom_universite }}</option>
-                                {% endfor %} 
+                                <!-- <option selected>Choisir Université source</option> -->
+                                <option selected value="{{ single_palm.id }}">{{ single_palm.annee }} => {{ single_palm.universite.nom_universite }}</option>
                             </select>
                         </div>
                     </div>

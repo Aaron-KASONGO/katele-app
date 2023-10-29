@@ -34,11 +34,17 @@ class Palmares(models.Model):
     file_second_sem = models.FileField(upload_to="palmares2", null=True)
     universite = models.ForeignKey('Universite', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.annee
+
 class Etude(models.Model):
     promotion = models.CharField(max_length=30)
     palmares = models.ForeignKey('Palmares', on_delete=models.CASCADE)
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
     valide = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.promotion
 
 
 class Inscription(models.Model):
@@ -47,6 +53,9 @@ class Inscription(models.Model):
     promotion = models.CharField(max_length=30)
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.faculte + " " + self.promotion
+
 class Parcous(models.Model):
     anne_acad = models.IntegerField()
     file = models.FileField(upload_to="parcours", null=True)
@@ -54,4 +63,7 @@ class Parcous(models.Model):
     mention = models.CharField(max_length=15, default="Pas de mention")
     promotion = models.CharField(max_length=30, default="L4 MSI")
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.anne_acad
 
