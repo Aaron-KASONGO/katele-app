@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Palmares, Etudiant
+from .models import Palmares, Etudiant, Parcous
 
 class PalmaresForm(ModelForm):
     class Meta:
@@ -13,3 +13,8 @@ class EtudiantForm(ModelForm):
     class Meta:
         model = Etudiant
         fields = ('nom_etudiant', 'post_nom', 'prenom', 'date_naissance', 'matricule', 'password', 'login', 'palmares', 'promotion')
+
+class Parcoursform(ModelForm):
+    class Meta:
+        model = Parcous
+        fields = ('anne_acad', 'file', 'cote', 'mention', 'promotion', 'universite')

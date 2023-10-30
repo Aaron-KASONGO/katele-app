@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% include "transfertApp/profile_include.html" %}
-    <div class="offset-3 col-6">
-        <a class="btn btn-primary" href="{% url "validate-etudiant" profile.id %}">Valider</a>
+    <div class="my-5">
+        {% include "transfertApp/profile_include.html" %}
+        <div class="offset-3 col-6 d-flex justify-content-center">
+            <div class="text-center me-5">
+                <a class="btn btn-secondary" href="{% url "dashboard" %}">Annuler</a>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="{% url "validate-etudiant" profile.id %}">Valider</a>
+            </div>
+        </div>
     </div>
 {% endblock content %}

@@ -152,7 +152,7 @@
       <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form method="post" action="{% url "add-etudiant" %}">
+            <form method="post" action="{% url "add-etudiant" %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Créer un étudiant</h1>
@@ -209,6 +209,11 @@
                         <label for="promotion" class="form-label">Promotion</label>
                         <input type="text" name="promotion" class="form-control" id="promotion" placeholder="L4 MSI">
                     </div>
+{% comment %} 
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Parcours étudiant</label>
+                        <input type="file" name="file" class="form-control" id="file">
+                    </div> {% endcomment %}
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>

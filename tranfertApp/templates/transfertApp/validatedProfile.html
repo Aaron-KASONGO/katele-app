@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="my-5">
+        {% include "transfertApp/profile_include.html" %}
+        <div class="offset-3 col-6 d-flex justify-content-center">
+            <div class="text-center me-5">
+                <a class="btn btn-secondary" href="{% url "dashboard" %}">dashboard</a>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Ajouter parcours</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabe" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form method="post" action="{% url "add-palmares" %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabe">Créer un parcours</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="anne_acad" class="form-label">Année du parcours</label>
+                        <input type="text" name="anne_acad" class="form-control" id="anne_acad" placeholder="2020">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Fichier parcours</label>
+                        <input type="file" name="file" class="form-control" id="file">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cote" class="form-label">Côte</label>
+                        <input type="number" name="cote" class="form-control" id="cote" placeholder="15">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="mention" class="form-label">Mention</label>
+                        <input type="text" name="mention" class="form-control" id="mention" placeholder="Bien">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="promotion" class="form-label">Promotion</label>
+                        <input type="text" name="promotion" class="form-control" id="promotion" placeholder="L4 MSI">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="universite" class="form-label">Côte</label>
+                        <input type="text" name="universite" class="form-control" id="universite" placeholder="Malkia">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Créer</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endblock content %}

@@ -12,6 +12,9 @@ class Etudiant(models.Model):
     login = models.CharField(max_length=30)
     password = models.TextField()
 
+    def __str__(self):
+        return f"{self.nom_etudiant} {self.prenom}"
+
 
 class Universite(User):
     avatar = models.ImageField(upload_to="avatar_universites", default="https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg")
@@ -21,7 +24,7 @@ class Universite(User):
     website = models.TextField()
 
     def __str__(self):
-        return self.nom_universite
+        return f"{self.nom_universite}"
     
     class Meta:
         verbose_name = "Université"
@@ -35,7 +38,7 @@ class Palmares(models.Model):
     universite = models.ForeignKey('Universite', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.annee
+        return f"{self.annee}"
 
 class Etude(models.Model):
     promotion = models.CharField(max_length=30)
@@ -44,7 +47,7 @@ class Etude(models.Model):
     valide = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.promotion
+        return f"{self.promotion}"
 
 
 class Inscription(models.Model):
@@ -57,13 +60,14 @@ class Inscription(models.Model):
         return self.faculte + " " + self.promotion
 
 class Parcous(models.Model):
-    anne_acad = models.IntegerField()
+    anne_acad = models.IntegerField(default=2000)
     file = models.FileField(upload_to="parcours", null=True)
     cote = models.IntegerField(default=0)
     mention = models.CharField(max_length=15, default="Pas de mention")
     promotion = models.CharField(max_length=30, default="L4 MSI")
+    universite = models.CharField(max_length=30)
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.anne_acad
+        return f"{self.anne_acad} - {self.universite}"
 
