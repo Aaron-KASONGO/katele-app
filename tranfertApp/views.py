@@ -140,6 +140,10 @@ def add_parcours(request, id):
         # form_file = Parcoursform(request.POST, request.FILES)
         # print(form_file.errors)
         if form.is_valid():
+            parcours = form.save(commit=False)
+            parcours.universite = Universite.objects.get(pk=request.user.id)
+            parcours.etudiant_id = id
+            form.save()
             # palmares = form.save(commit=False)
             # palmares.universite = Universite.objects.get(pk=request.user.id)
             # form.save()
@@ -148,3 +152,9 @@ def add_parcours(request, id):
             return redirect('dashboard')
     else:
         return redirect('dashboard')
+
+
+def search_palmares(request):
+    query = request.GET.get('query', '')
+    universites = Universite.objects.filter(nom_universite__contains=query)
+    return render(request, 'transfertApp/trouverPalmares.html', {'universites': universites})

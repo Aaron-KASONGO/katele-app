@@ -17,4 +17,4 @@ class EtudiantForm(ModelForm):
 class Parcoursform(ModelForm):
     class Meta:
         model = Parcous
-        fields = ('anne_acad', 'file', 'cote', 'mention', 'promotion', 'universite')
+        fields = ('anne_acad', 'file', 'cote', 'mention', 'promotion')

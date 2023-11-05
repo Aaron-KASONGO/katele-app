@@ -7,12 +7,12 @@
         <div>
             <div class="row h-100">
                 <div class="col-md-6 offset-md-3 d-flex align-items-center">
-                    <form>
+                    <form action="{% url "search-palmares" %}">
                         <h1 class="text-center mb-5">Rechercher palmares d'<span class="text-primary">Université</span></h1>
                         <div class="row g-3">
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" name='query' id="subject" placeholder="Subject">
                                     <label for="subject">Rechercher palmares</label>
                                 </div>
                             </div>
